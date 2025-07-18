@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { ArrowRight, Code2, Zap, Users, Star, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -321,6 +322,8 @@ const Index = () => {
           <ChevronUp className="w-4 h-4" />
         </Button>
       )}
+
+      <Footer />
     </div>
   );
 };

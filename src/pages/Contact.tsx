@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { MapPin, Phone, Mail, Send, Clock, Github, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -290,6 +291,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
