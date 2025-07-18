@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import { ArrowRight, Code2, Zap, Users, Star, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,6 +8,7 @@ import heroImage from '@/assets/hero-bg.jpg';
 import techIllustration from '@/assets/tech-illustration.jpg';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -96,11 +98,20 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style={{animationDelay: '0.4s'}}>
-              <Button size="lg" className="bg-gradient-primary hover:opacity-90 transition-opacity font-inter font-medium shadow-glow px-8 py-4 text-lg">
+              <Button 
+                size="lg" 
+                className="bg-gradient-primary hover:opacity-90 transition-opacity font-inter font-medium shadow-glow px-8 py-4 text-lg"
+                onClick={() => navigate('/contact')}
+              >
                 Start Your Project
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-              <Button variant="outline" size="lg" className="border-border hover:border-primary hover:bg-primary/10 transition-colors font-inter font-medium px-8 py-4 text-lg">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-border hover:border-primary hover:bg-primary/10 transition-colors font-inter font-medium px-8 py-4 text-lg"
+                onClick={() => navigate('/services')}
+              >
                 View Our Work
               </Button>
             </div>
@@ -283,6 +294,7 @@ const Index = () => {
             <Button 
               size="lg"
               className="bg-white text-primary hover:bg-white/90 font-inter font-medium shadow-elegant px-8 py-4 text-lg"
+              onClick={() => navigate('/contact')}
             >
               Start Your Project
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -291,6 +303,7 @@ const Index = () => {
               variant="outline"
               size="lg"
               className="border-white/30 text-white hover:bg-white/10 font-inter font-medium px-8 py-4 text-lg"
+              onClick={() => navigate('/contact')}
             >
               Schedule a Call
             </Button>
