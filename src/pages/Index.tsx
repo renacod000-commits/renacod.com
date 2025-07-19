@@ -183,11 +183,11 @@ const Index = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-foreground">10+ Years of Combined Experience</span>
+                  <span className="text-foreground">Located in Coimbatore, India</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-foreground">50+ Successful Projects Delivered</span>
+                  <span className="text-foreground">Contact: +91 7810085629</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full" />

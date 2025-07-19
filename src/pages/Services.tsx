@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Smartphone, Globe, Brain, ArrowRight, Code, Zap, Shield } from 'lucide-react';
@@ -6,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 const Services = () => {
+  const navigate = useNavigate();
   const services = [
     {
       id: 'app-development',
@@ -106,6 +108,7 @@ const Services = () => {
                   <Button 
                     className="w-full bg-gradient-primary hover:opacity-90 transition-opacity group-hover:shadow-glow"
                     size="lg"
+                    onClick={() => navigate('/contact')}
                   >
                     Learn More
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -196,6 +199,7 @@ const Services = () => {
           <Button 
             size="lg"
             className="bg-white text-primary hover:bg-white/90 font-inter font-medium shadow-elegant"
+            onClick={() => navigate('/contact')}
           >
             Get Started Today
             <ArrowRight className="w-4 h-4 ml-2" />
