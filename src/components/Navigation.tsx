@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import renacodLogo from '@/assets/renacod-logo.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,10 +31,8 @@ const Navigation = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="font-poppins font-bold text-2xl text-primary hover:text-primary-light transition-colors">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Renacod
-            </span>
+          <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
+            <img src={renacodLogo} alt="Renacod" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
