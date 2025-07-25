@@ -31,7 +31,16 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
-            <img src="/renacod-logo.png" alt="Renacod" className="h-8 w-auto" />
+            {/* SVG White Logo */}
+            <svg height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-14 w-auto">
+              <g>
+                <rect width="48" height="48" rx="12" fill="none"/>
+                <path d="M12 24C12 17.3726 17.3726 12 24 12C30.6274 12 36 17.3726 36 24C36 30.6274 30.6274 36 24 36C17.3726 36 12 30.6274 12 24Z" stroke="white" strokeWidth="3"/>
+                <path d="M18 24C18 20.6863 20.6863 18 24 18C27.3137 18 30 20.6863 30 24C30 27.3137 27.3137 30 24 30C20.6863 30 18 27.3137 18 24Z" fill="white"/>
+                <text x="24" y="28" textAnchor="middle" fill="#222" fontSize="10" fontWeight="bold" fontFamily="Arial">AI</text>
+              </g>
+            </svg>
+            <span className="ml-3 text-2xl font-poppins font-bold text-foreground tracking-tight">Renacod</span>
           </Link>
 
           {/* Desktop Navigation */}
