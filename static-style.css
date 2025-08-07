@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
+  background: #0a1a2f;
+  color: #f5f6fa;
+}
+.navbar {
+  background: linear-gradient(90deg, #0a1a2f 0%, #1e3a5c 60%, #2ec4b6 100%);
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(10,26,47,0.1);
+}
+.nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo-img {
+  height: 96px;
+  width: auto;
+  filter: drop-shadow(0 4px 16px #2ec4b6);
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: #f5f6fa;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: #2ec4b6;
+}
+.hero {
+  padding: 6rem 0 3rem 0;
+  text-align: center;
+  background: url('/src/assets/hero-bg.jpg') center/cover no-repeat;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #2ec4b6, #1e3a5c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #cfd8dc;
+}
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.btn {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-primary {
+  background: linear-gradient(90deg, #2ec4b6, #1e3a5c);
+  color: #fff;
+  border: none;
+}
+.btn-primary:hover {
+  background: #1e3a5c;
+}
+.btn-outline {
+  background: transparent;
+  color: #2ec4b6;
+  border: 2px solid #2ec4b6;
+}
+.btn-outline:hover {
+  background: #2ec4b6;
+  color: #fff;
+}
+.footer {
+  background: #0a1a2f;
+  padding: 2rem 0;
+  color: #cfd8dc;
+}
+.footer-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-logo {
+  height: 96px;
+  width: auto;
+  filter: drop-shadow(0 4px 16px #2ec4b6) brightness(1.2);
+}
+.footer-contact p, .footer-contact a {
+  margin: 0.5rem 0;
+  color: #cfd8dc;
+  font-size: 1rem;
+}
+.footer-contact a {
+  color: #2ec4b6;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer-contact a:hover {
+  text-decoration: underline;
+}
