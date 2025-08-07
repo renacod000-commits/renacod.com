@@ -121,3 +121,255 @@ body {
 .footer-contact a:hover {
   text-decoration: underline;
 }
+
+/* Services Page Styles */
+.services-hero {
+  padding: 8rem 0 4rem;
+  text-align: center;
+}
+
+.services-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.services-description {
+  font-size: 1.25rem;
+  color: #cfd8dc;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.services-grid-section {
+  padding: 4rem 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.service-card {
+  background: #0D1114;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid #1F2937;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: #2ec4b6;
+  box-shadow: 0 0 20px rgba(46, 196, 182, 0.1);
+}
+
+.service-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.app-icon {
+  background: linear-gradient(135deg, #2ec4b6, #1e3a5c);
+}
+
+.web-icon {
+  background: linear-gradient(135deg, #7DD3FC, #2ec4b6);
+}
+
+.ai-icon {
+  background: linear-gradient(135deg, #1e3a5c, #7DD3FC);
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.service-subtitle {
+  color: #2ec4b6;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.service-desc {
+  color: #cfd8dc;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-features li {
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+  color: #cfd8dc;
+}
+
+.service-features li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #2ec4b6;
+}
+
+/* Contact Page Styles */
+.contact-hero {
+  padding: 8rem 0 4rem;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-description {
+  font-size: 1.25rem;
+  color: #cfd8dc;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.contact-section {
+  padding: 4rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-card {
+  background: #0D1114;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid #1F2937;
+  text-align: center;
+}
+
+.contact-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-subtitle {
+  color: #cfd8dc;
+  margin-bottom: 2rem;
+}
+
+.google-form {
+  width: 100%;
+  min-height: 600px;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-card {
+  background: #0D1114;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #1F2937;
+  text-align: center;
+}
+
+.info-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  color: #2ec4b6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #f5f6fa;
+}
+
+.info-card p {
+  color: #cfd8dc;
+  margin: 0.25rem 0;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #cfd8dc;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background: #1F2937;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #2ec4b6;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .services-title,
+  .contact-title {
+    font-size: 2.5rem;
+  }
+
+  .services-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+
+  .info-card {
+    padding: 1rem;
+  }
+}
