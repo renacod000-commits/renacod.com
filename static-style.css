@@ -41,7 +41,7 @@ body {
 .hero {
   padding: 6rem 0 3rem 0;
   text-align: center;
-  background: url('/src/assets/hero-bg.jpg') center/cover no-repeat;
+  background: url('./assets/hero-bg.jpg') center/cover no-repeat;
 }
 .hero-content h1 {
   font-size: 3rem;
