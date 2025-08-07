@@ -25,22 +25,15 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-background/95 backdrop-blur-lg border-b border-border shadow-card' : 'bg-transparent'
+      scrolled
+        ? 'bg-gradient-to-r from-[#0a1a2f] via-[#1e3a5c] to-[#2ec4b6] bg-opacity-95 backdrop-blur-lg border-b border-border shadow-card'
+        : 'bg-gradient-to-r from-[#0a1a2f] via-[#1e3a5c] to-[#2ec4b6] bg-opacity-90'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
-            {/* SVG White Logo */}
-            <svg height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-14 w-auto">
-              <g>
-                <rect width="48" height="48" rx="12" fill="none"/>
-                <path d="M12 24C12 17.3726 17.3726 12 24 12C30.6274 12 36 17.3726 36 24C36 30.6274 30.6274 36 24 36C17.3726 36 12 30.6274 12 24Z" stroke="white" strokeWidth="3"/>
-                <path d="M18 24C18 20.6863 20.6863 18 24 18C27.3137 18 30 20.6863 30 24C30 27.3137 27.3137 30 24 30C20.6863 30 18 27.3137 18 24Z" fill="white"/>
-                <text x="24" y="28" textAnchor="middle" fill="#222" fontSize="10" fontWeight="bold" fontFamily="Arial">AI</text>
-              </g>
-            </svg>
-            <span className="ml-3 text-2xl font-poppins font-bold text-foreground tracking-tight">Renacod</span>
+            <img src="/renacodlogo.png" alt="Renacod Logo" className="h-24 w-auto drop-shadow-xl" style={{borderRadius: '0'}} />
           </Link>
 
           {/* Desktop Navigation */}

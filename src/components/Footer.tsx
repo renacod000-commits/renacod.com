@@ -8,9 +8,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-poppins font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Renacod
-            </h3>
+            <div className="flex items-center space-x-3">
+              <img src="/renacodlogo.png" alt="Renacod Logo" className="h-24 w-auto drop-shadow-xl" style={{borderRadius: '0', filter: 'brightness(1.2)'}} />
+            </div>
             <p className="text-muted-foreground leading-relaxed">
               Reimagining digital solutions with cutting-edge technology and innovative approaches.
             </p>
