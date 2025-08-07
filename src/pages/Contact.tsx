@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { MapPin, Phone, Mail, Send, Clock, Github, Linkedin, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, Clock, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -43,18 +43,18 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: 'Address',
-      details: ['123 Tech Boulevard', 'Innovation District', 'San Francisco, CA 94105']
+      title: 'Location',
+      details: ['Coimbatore']
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: 'Phone',
-      details: ['+1 (555) 123-4567', '+1 (555) 123-4568']
+      details: ['7810085629']
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      details: ['hello@renacod.com', 'support@renacod.com']
+      details: ['renacod000@gmail.com']
     },
     {
       icon: <Clock className="w-6 h-6" />,
@@ -64,9 +64,7 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, name: 'GitHub', url: '#' },
-    { icon: <Linkedin className="w-5 h-5" />, name: 'LinkedIn', url: '#' },
-    { icon: <Twitter className="w-5 h-5" />, name: 'Twitter', url: '#' }
+    { icon: <Linkedin className="w-5 h-5" />, name: 'LinkedIn', url: 'https://www.linkedin.com/in/renacod-renacod-6ba448379/' }
   ];
 
   return (
@@ -95,79 +93,16 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="animate-fade-up">
               <Card className="bg-surface border-border shadow-card">
-                <CardContent className="p-8">
+                <CardContent className="p-8 text-center">
                   <h2 className="text-3xl font-poppins font-bold mb-6 text-foreground">
-                    Send us a Message
+                    Contact Us
                   </h2>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                        Full Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full bg-background border-border focus:border-primary focus:ring-primary"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                        Email Address
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full bg-background border-border focus:border-primary focus:ring-primary"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                        Message
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        required
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={6}
-                        className="w-full bg-background border-border focus:border-primary focus:ring-primary resize-none"
-                        placeholder="Tell us about your project..."
-                      />
-                    </div>
-                    
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-primary hover:opacity-90 transition-opacity disabled:opacity-50 font-medium"
-                      size="lg"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="w-4 h-4 ml-2" />
-                        </>
-                      )}
+                  <p className="mb-6 text-muted-foreground">For inquiries, please use our Google Form below:</p>
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLScIsE7tvW_RwnpaNuJi7q5qFjMP-SHD4YEWDidsCDql0ttEag/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+                    <Button className="bg-gradient-primary hover:opacity-90 transition-opacity font-medium" size="lg">
+                      Open Google Form
                     </Button>
-                  </form>
+                  </a>
                 </CardContent>
               </Card>
             </div>
@@ -249,7 +184,7 @@ const Contact = () => {
               </span>
             </h2>
             <p className="text-muted-foreground">
-              Located in the heart of San Francisco's Innovation District
+              Located in Coimbatore
             </p>
           </div>
           

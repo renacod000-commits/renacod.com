@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -16,28 +16,12 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-surface hover:bg-primary/10 border border-border hover:border-primary/50 transition-colors flex items-center justify-center group"
-              >
-                <Github className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a
-                href="https://linkedin.com"
+                 href="https://www.linkedin.com/in/renacod-renacod-6ba448379/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-surface hover:bg-primary/10 border border-border hover:border-primary/50 transition-colors flex items-center justify-center group"
               >
                 <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-surface hover:bg-primary/10 border border-border hover:border-primary/50 transition-colors flex items-center justify-center group"
-              >
-                <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
             </div>
           </div>
@@ -92,15 +76,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">hello@renacod.com</span>
+                <span className="text-muted-foreground">renacod000@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">+1 (555) 123-4567</span>
+                <span className="text-muted-foreground">7810085629</span>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">San Francisco, CA</span>
+                <span className="text-muted-foreground">Coimbatore</span>
               </li>
             </ul>
           </div>
