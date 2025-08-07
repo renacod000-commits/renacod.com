@@ -1,210 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renacod - Digital Solutions</title>
-    <link rel="icon" type="image/ico" href="/favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="nav-fixed">
-        <div class="container">
-            <div class="nav-content">
-                <a href="/" class="logo-link">
-                    <img src="/renacodlogo.png" alt="Renacod Logo" class="logo-image">
-                </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Renacod - Reimagining Digital Solutions</title>
+    <meta name="description" content="Innovative tech company specializing in app development, web solutions, and AI integrations" />
+    <meta name="author" content="Renacod" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-                <div class="desktop-nav">
-                    <a href="/" class="nav-link active">Home</a>
-                    <a href="/services" class="nav-link">Services</a>
-                    <a href="/contact" class="nav-link">Contact</a>
-                </div>
+    <meta property="og:title" content="070b9dbe-52d1-490a-9d62-c243fa935dba" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-                <button class="mobile-menu-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 6h16M4 12h16m-16 6h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-background" style="background-image: url('/src/assets/hero-bg.jpg')">
-            <div class="overlay"></div>
-        </div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="gradient-text">Reimagining</span>
-                    <br>
-                    <span class="text-light">Digital Solutions</span>
-                </h1>
-                
-                <p class="hero-description">
-                    We craft innovative applications and AI-powered solutions that transform businesses and create extraordinary user experiences.
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="/contact" class="primary-button">
-                        Get Started
-                        <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M5 12h14m-7-7l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section">
-        <div class="container">
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path>
-                        </svg>
-                    </div>
-                    <h3>App Development</h3>
-                    <p>Native iOS & Android apps with cutting-edge technology</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                        </svg>
-                    </div>
-                    <h3>Web Solutions</h3>
-                    <p>Scalable web applications built for performance</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3>AI Integration</h3>
-                    <p>Smart automation and machine learning solutions</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technologies Section -->
-    <section class="tech-section">
-        <div class="container">
-            <h2 class="section-title">Technologies We Use</h2>
-            <div class="tech-grid">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Flutter</span>
-                <span class="tech-tag">AWS</span>
-                <span class="tech-tag">TensorFlow</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="section-title">What Our Clients Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Renacod transformed our vision into a stunning reality. Their expertise in modern tech stack is unmatched."</p>
-                    <div class="testimonial-author">
-                        <strong>Sarah Chen</strong>
-                        <span>CEO, TechStart Inc.</span>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"The AI solutions they built for us increased our efficiency by 300%. Truly revolutionary work."</p>
-                    <div class="testimonial-author">
-                        <strong>Michael Rodriguez</strong>
-                        <span>CTO, InnovateX</span>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"From concept to deployment, their process is seamless. The mobile app exceeded all expectations."</p>
-                    <div class="testimonial-author">
-                        <strong>Emily Watson</strong>
-                        <span>Product Manager, FutureApps</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="/renacodlogo.png" alt="Renacod Logo" class="footer-logo-image">
-                </div>
-                <div class="footer-contact">
-                    <p>Contact: 7810085629</p>
-                    <p>Email: renacod000@gmail.com</p>
-                    <p>Location: Coimbatore</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top -->
-    <button id="scrollTop" class="scroll-top-button">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
-
-    <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.querySelector('.nav-fixed');
-        menuBtn?.addEventListener('click', () => {
-            nav.classList.toggle('mobile-open');
-        });
-
-        // Scroll to Top
-        const scrollBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
-            }
-        });
-
-        scrollBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Navigation Scroll Effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-    </script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
