@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { contactApi } from '@/services/api';
+import emailjs from '@emailjs/browser';   // ✅ EmailJS import
 
 const Contact = () => {
   const { toast } = useToast();
@@ -26,21 +26,32 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await contactApi.submit(formData);
-      
-      if (response.status === 'success') {
+      // ✅ Use your EmailJS credentials
+      const result = await emailjs.send(
+        "service_slf8gob",        // <-- Your Service ID
+        "template_fylwjzu",       // <-- Replace with your EmailJS template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          title: formData.subject,   // matches {{title}} in your template
+          message: formData.message,
+        },
+        "FJ0ZgxdWH2DVdGmFc"       // <-- Your Public Key
+      );
+
+      if (result.status === 200 || result.text === "OK") {
         toast({
           title: "Message sent successfully!",
-          description: response.message || "We'll get back to you within 24 hours.",
+          description: "We'll get back to you within 3 business days.",
         });
-
         setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
       } else {
-        throw new Error(response.message || 'Failed to send message');
+        throw new Error("Failed to send message");
       }
     } catch (error: any) {
-      console.error('Contact form submission error:', error);
-      
+      console.error("Contact form submission error:", error);
       toast({
         title: "Failed to send message",
         description: error.message || "Please try again later or contact us directly.",
@@ -59,26 +70,10 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: 'Location',
-      details: ['Coimbatore']
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: 'Phone',
-      details: ['7810085629']
-    },
-    {
-      icon: <Mail className="w-6 h-6" />,
-      title: 'Email',
-      details: ['renacod000@gmail.com']
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: 'Business Hours',
-      details: ['Mon - Fri: 9:00 AM - 6:00 PM', 'Sat: 10:00 AM - 4:00 PM', 'Sun: Closed']
-    }
+    { icon: <MapPin className="w-6 h-6" />, title: 'Location', details: ['Coimbatore'] },
+    { icon: <Phone className="w-6 h-6" />, title: 'Phone', details: ['7810085629'] },
+    { icon: <Mail className="w-6 h-6" />, title: 'Email', details: ['renacod000@gmail.com'] },
+    { icon: <Clock className="w-6 h-6" />, title: 'Business Hours', details: ['Mon - Fri: 9:00 AM - 6:00 PM', 'Sat: 10:00 AM - 4:00 PM', 'Sun: Closed'] }
   ];
 
   const socialLinks = [
@@ -298,59 +293,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-surface">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-4">
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Visit Our Office
-              </span>
-            </h2>
-            <p className="text-muted-foreground">
-              Located in Coimbatore
-            </p>
-          </div>
-          
-          <div className="bg-gradient-primary rounded-2xl p-1 shadow-glow">
-            <div className="bg-background rounded-xl overflow-hidden">
-              <div className="w-full h-96 bg-muted flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-poppins font-semibold text-foreground mb-2">
-                    Interactive Map
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Map integration would be implemented here
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto text-center">
-          <div className="bg-gradient-primary rounded-2xl p-12">
-            <h2 className="text-3xl md:text-4xl font-poppins font-bold mb-6 text-white">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join hundreds of satisfied clients who trusted us with their digital transformation.
-            </p>
-            <Button 
-              size="lg"
-              className="bg-white text-primary hover:bg-white/90 font-inter font-medium shadow-elegant"
-            >
-              Schedule a Consultation
-              <Send className="w-4 h-4 ml-2" />
-            </Button>
           </div>
         </div>
       </section>
