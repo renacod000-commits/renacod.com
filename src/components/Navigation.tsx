@@ -24,7 +24,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 hover:shadow-glow   ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 hover:shadow-glow bg-[#011125]  ${
       scrolled
         ? 'bg-gradient-to-r  from-[#000e20] via-[#041e3e] to-[#011125] bg-opacity-95  border-b border-border shadow-card '
         : 'bg-gradient-to-r from-[#011731] via-[#092951] to-[#010d1e] bg-opacity-90 '

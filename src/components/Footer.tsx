@@ -1,6 +1,6 @@
 import React from 'react';
 import { Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-background border-t border-border">
@@ -9,7 +9,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img src="/renacodlogo.png" alt="Renacod Logo" className="h-24 w-auto drop-shadow-xl" style={{borderRadius: '0', filter: 'brightness(1.2)'}} />
+              <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
+                          <img src="/image.png" alt="Renacod Logo" className="h-14 w-auto drop-shadow-xl rounded-3xl  mr-2"  />
+                          <p className='font-inter font-semibold text-2xl text-foreground hover:text-primary '>Renacod</p>
+                        </Link>
+
             </div>
             <p className="text-muted-foreground leading-relaxed">
               Reimagining digital solutions with cutting-edge technology and innovative approaches.
