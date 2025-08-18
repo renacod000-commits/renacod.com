@@ -7,16 +7,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { contactApi } from '@/services/api';
 
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    company: '',
-    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,30 +21,16 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      const response = await contactApi.submit(formData);
-      
-      if (response.status === 'success') {
-        toast({
-          title: "Message sent successfully!",
-          description: response.message || "We'll get back to you within 24 hours.",
-        });
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    toast({
+      title: "Message sent successfully!",
+      description: "We'll get back to you within 24 hours.",
+    });
 
-        setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
-      } else {
-        throw new Error(response.message || 'Failed to send message');
-      }
-    } catch (error: any) {
-      console.error('Contact form submission error:', error);
-      
-      toast({
-        title: "Failed to send message",
-        description: error.message || "Please try again later or contact us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -115,122 +97,12 @@ const Contact = () => {
                   <h2 className="text-3xl font-poppins font-bold mb-6 text-foreground">
                     Contact Us
                   </h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                          Full Name *
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="Enter your full name"
-                          className="w-full"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                          Email Address *
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="Enter your email"
-                          className="w-full"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                          Phone Number
-                        </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="Enter your phone number"
-                          className="w-full"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-                          Company
-                        </label>
-                        <Input
-                          id="company"
-                          name="company"
-                          type="text"
-                          value={formData.company}
-                          onChange={handleChange}
-                          placeholder="Enter your company name"
-                          className="w-full"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                        Subject *
-                      </label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        required
-                        value={formData.subject}
-                        onChange={handleChange}
-                        placeholder="What is this about?"
-                        className="w-full"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                        Message *
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        required
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Tell us about your project or inquiry..."
-                        rows={5}
-                        className="w-full resize-none"
-                      />
-                    </div>
-
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-primary hover:opacity-90 transition-opacity font-medium" 
-                      size="lg"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="w-4 h-4 ml-2" />
-                        </>
-                      )}
+                  <p className="mb-6 text-muted-foreground">For inquiries, please use our Google Form below:</p>
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLScIsE7tvW_RwnpaNuJi7q5qFjMP-SHD4YEWDidsCDql0ttEag/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+                    <Button className="bg-gradient-primary hover:opacity-90 transition-opacity font-medium" size="lg">
+                      Open Google Form
                     </Button>
-                  </form>
+                  </a>
                 </CardContent>
               </Card>
             </div>
