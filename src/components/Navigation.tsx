@@ -24,16 +24,17 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 hover:shadow-glow bg-[#011125]  ${
       scrolled
-        ? 'bg-gradient-to-r from-[#0a1a2f] via-[#1e3a5c] to-[#2ec4b6] bg-opacity-95 backdrop-blur-lg border-b border-border shadow-card'
-        : 'bg-gradient-to-r from-[#0a1a2f] via-[#1e3a5c] to-[#2ec4b6] bg-opacity-90'
+        ? 'bg-gradient-to-r  from-[#000e20] via-[#041e3e] to-[#011125] bg-opacity-95  border-b border-border shadow-card '
+        : 'bg-gradient-to-r from-[#011731] via-[#092951] to-[#010d1e] bg-opacity-90 '
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
-            <img src="/renacodlogo.png" alt="Renacod Logo" className="h-24 w-auto drop-shadow-xl" style={{borderRadius: '0'}} />
+            <img src="/image.png" alt="Renacod Logo" className="h-14 w-auto drop-shadow-xl rounded-3xl  mr-2"  />
+            <p className='font-inter font-semibold text-2xl text-foreground hover:text-primary '>Renacod</p>
           </Link>
 
           {/* Desktop Navigation */}
@@ -53,9 +54,7 @@ const Navigation = () => {
               </Link>
             ))}
             
-            <Button className="ml-4 bg-gradient-primary hover:opacity-90 transition-opacity font-inter font-medium">
-              Get Started
-            </Button>
+          
           </div>
 
           {/* Mobile Menu Button */}

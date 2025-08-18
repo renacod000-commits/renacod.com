@@ -300,14 +300,7 @@ const Index = () => {
               Start Your Project
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-white/30 text-white hover:bg-white/10 font-inter font-medium px-8 py-4 text-lg"
-              onClick={() => navigate('/contact')}
-            >
-              Schedule a Call
-            </Button>
+              
           </div>
         </div>
       </section>
