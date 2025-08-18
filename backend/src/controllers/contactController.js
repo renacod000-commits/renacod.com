@@ -20,7 +20,7 @@ export const submitContact = catchAsync(async (req, res) => {
   } = req.body;
 
   // Create new contact
-  const contact = await Contact.create({
+  const contact = new Contact({
     name,
     email,
     phone,
@@ -33,9 +33,23 @@ export const submitContact = catchAsync(async (req, res) => {
     source
   });
 
-  // Send notification email
+  // Validate contact
+  const errors = contact.validate();
+  if (errors.length > 0) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'Validation failed',
+      errors
+    });
+  }
+
+  // Save contact
+  await contact.save();
+
+  // Send notification email (optional)
   try {
-    await sendContactNotification(contact);
+    // await sendContactNotification(contact);
+      console.log('Contact notification would be sent here');
   } catch (error) {
     console.error('Failed to send contact notification:', error);
     // Don't fail the request if email fails
@@ -46,7 +60,7 @@ export const submitContact = catchAsync(async (req, res) => {
     message: 'Thank you for your message! We will get back to you within 24 hours.',
     data: {
       contact: {
-        id: contact._id,
+        id: contact.id,
         name: contact.name,
         email: contact.email,
         subject: contact.subject,
@@ -64,54 +78,59 @@ export const getAllContacts = catchAsync(async (req, res) => {
   const limit = parseInt(req.query.limit) || 20;
   const skip = (page - 1) * limit;
 
-  const filter = {};
+  let contacts = await Contact.getAll();
   
   // Apply filters
-  if (req.query.status) filter.status = req.query.status;
-  if (req.query.priority) filter.priority = req.query.priority;
-  if (req.query.service) filter.service = req.query.service;
-  if (req.query.source) filter.source = req.query.source;
-  if (req.query.isRead !== undefined) filter.isRead = req.query.isRead === 'true';
+  if (req.query.status) {
+    contacts = contacts.filter(contact => contact.status === req.query.status);
+  }
+  if (req.query.priority) {
+    contacts = contacts.filter(contact => contact.priority === req.query.priority);
+  }
+  if (req.query.service) {
+    contacts = contacts.filter(contact => contact.service === req.query.service);
+  }
+  if (req.query.source) {
+    contacts = contacts.filter(contact => contact.source === req.query.source);
+  }
+  if (req.query.isRead !== undefined) {
+    contacts = contacts.filter(contact => contact.isRead === (req.query.isRead === 'true'));
+  }
   
   // Search functionality
   if (req.query.search) {
-    const searchRegex = new RegExp(req.query.search, 'i');
-    filter.$or = [
-      { name: searchRegex },
-      { email: searchRegex },
-      { company: searchRegex },
-      { subject: searchRegex },
-      { message: searchRegex }
-    ];
+    const searchTerm = req.query.search.toLowerCase();
+    contacts = contacts.filter(contact => 
+      contact.name.toLowerCase().includes(searchTerm) ||
+      contact.email.toLowerCase().includes(searchTerm) ||
+      contact.company.toLowerCase().includes(searchTerm) ||
+      contact.subject.toLowerCase().includes(searchTerm) ||
+      contact.message.toLowerCase().includes(searchTerm)
+    );
   }
 
   // Date range filter
   if (req.query.startDate || req.query.endDate) {
-    filter.createdAt = {};
-    if (req.query.startDate) {
-      filter.createdAt.$gte = new Date(req.query.startDate);
-    }
-    if (req.query.endDate) {
-      filter.createdAt.$lte = new Date(req.query.endDate);
-    }
+    contacts = contacts.filter(contact => {
+      const contactDate = new Date(contact.createdAt);
+      if (req.query.startDate && contactDate < new Date(req.query.startDate)) return false;
+      if (req.query.endDate && contactDate > new Date(req.query.endDate)) return false;
+      return true;
+    });
   }
 
-  const [contacts, total] = await Promise.all([
-    Contact.find(filter)
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .select('-__v'),
-    Contact.countDocuments(filter)
-  ]);
+  // Sort by creation date (newest first)
+  contacts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  const total = contacts.length;
+  const paginatedContacts = contacts.slice(skip, skip + limit);
   const totalPages = Math.ceil(total / limit);
   const hasNextPage = page < totalPages;
   const hasPrevPage = page > 1;
 
   res.status(200).json({
     status: 'success',
-    results: contacts.length,
+    results: paginatedContacts.length,
     pagination: {
       page,
       limit,
@@ -121,7 +140,7 @@ export const getAllContacts = catchAsync(async (req, res) => {
       hasPrevPage
     },
     data: {
-      contacts
+      contacts: paginatedContacts
     }
   });
 });
@@ -130,7 +149,7 @@ export const getAllContacts = catchAsync(async (req, res) => {
 // @route   GET /api/contact/:id
 // @access  Private
 export const getContactById = catchAsync(async (req, res) => {
-  const contact = await Contact.findById(req.params.id);
+  const contact = await Contact.getById(req.params.id);
   
   if (!contact) {
     return res.status(404).json({
@@ -141,8 +160,7 @@ export const getContactById = catchAsync(async (req, res) => {
 
   // Mark as read if not already read
   if (!contact.isRead) {
-    contact.isRead = true;
-    contact.readAt = new Date();
+    contact.markAsRead();
     await contact.save();
   }
 

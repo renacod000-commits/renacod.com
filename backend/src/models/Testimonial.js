@@ -1,239 +1,91 @@
-import mongoose from 'mongoose';
+// Simple Testimonial model for local storage
+import { dataStore } from '../config/database.js';
 
-const testimonialSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Name is required'],
-    trim: true,
-    maxlength: [100, 'Name cannot exceed 100 characters']
-  },
-  role: {
-    type: String,
-    required: [true, 'Role is required'],
-    trim: true,
-    maxlength: [100, 'Role cannot exceed 100 characters']
-  },
-  company: {
-    type: String,
-    required: [true, 'Company is required'],
-    trim: true,
-    maxlength: [100, 'Company cannot exceed 100 characters']
-  },
-  companyLogo: {
-    type: String,
-    trim: true
-  },
-  avatar: {
-    type: String,
-    trim: true
-  },
-  content: {
-    type: String,
-    required: [true, 'Testimonial content is required'],
-    trim: true,
-    maxlength: [1000, 'Content cannot exceed 1000 characters']
-  },
-  shortContent: {
-    type: String,
-    trim: true,
-    maxlength: [200, 'Short content cannot exceed 200 characters']
-  },
-  rating: {
-    type: Number,
-    required: [true, 'Rating is required'],
-    min: [1, 'Rating must be between 1 and 5'],
-    max: [5, 'Rating must be between 1 and 5']
-  },
-  project: {
-    title: {
-      type: String,
-      trim: true,
-      maxlength: [200, 'Project title cannot exceed 200 characters']
-    },
-    category: {
-      type: String,
-      enum: ['web-development', 'app-development', 'ai-integration', 'consulting', 'ui-ux', 'other'],
-      default: 'other'
-    },
-    completedAt: {
-      type: Date
+class Testimonial {
+  constructor(data) {
+    this.id = data.id || this.generateId();
+    this.name = data.name || '';
+    this.role = data.role || '';
+    this.company = data.company || '';
+    this.content = data.content || '';
+    this.rating = data.rating || 5;
+    this.image = data.image || '';
+    this.project = data.project || '';
+    this.service = data.service || '';
+    this.status = data.status || 'approved';
+    this.featured = data.featured || false;
+    this.createdAt = data.createdAt || new Date().toISOString();
+    this.updatedAt = data.updatedAt || new Date().toISOString();
+  }
+
+  generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  }
+
+  // Validation
+  validate() {
+    const errors = [];
+    
+    if (!this.name || this.name.trim().length === 0) {
+      errors.push('Name is required');
     }
-  },
-  services: [{
-    type: String,
-    enum: ['web-development', 'app-development', 'ai-integration', 'consulting', 'ui-ux', 'maintenance', 'other'],
-    default: 'other'
-  }],
-  tags: [{
-    type: String,
-    trim: true
-  }],
-  isVerified: {
-    type: Boolean,
-    default: false
-  },
-  isFeatured: {
-    type: Boolean,
-    default: false
-  },
-  isPublished: {
-    type: Boolean,
-    default: true
-  },
-  order: {
-    type: Number,
-    default: 0
-  },
-  views: {
-    type: Number,
-    default: 0
-  },
-  helpful: {
-    type: Number,
-    default: 0
-  },
-  notHelpful: {
-    type: Number,
-    default: 0
-  },
-  contactInfo: {
-    email: {
-      type: String,
-      trim: true,
-      lowercase: true,
-      match: [
-        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-        'Please enter a valid email'
-      ]
-    },
-    phone: {
-      type: String,
-      trim: true,
-      maxlength: [20, 'Phone number cannot exceed 20 characters']
-    },
-    linkedin: {
-      type: String,
-      trim: true,
-      validate: {
-        validator: function(v) {
-          if (!v) return true;
-          return /^https?:\/\/www\.linkedin\.com\/in\/.+/.test(v);
-        },
-        message: 'LinkedIn URL must be a valid LinkedIn profile URL'
+    
+    if (!this.content || this.content.trim().length === 0) {
+      errors.push('Testimonial content is required');
+    }
+    
+    if (this.rating < 1 || this.rating > 5) {
+      errors.push('Rating must be between 1 and 5');
+    }
+    
+    return errors;
+  }
+
+  // Static methods
+  static async getAll() {
+    return dataStore.testimonials.read();
+  }
+
+  static async getById(id) {
+    const testimonials = dataStore.testimonials.read();
+    return testimonials.find(testimonial => testimonial.id === id);
+  }
+
+  static async getFeatured() {
+    const testimonials = dataStore.testimonials.read();
+    return testimonials.filter(testimonial => testimonial.featured);
+  }
+
+  static async getApproved() {
+    const testimonials = dataStore.testimonials.read();
+    return testimonials.filter(testimonial => testimonial.status === 'approved');
+  }
+
+  async save() {
+    const testimonials = dataStore.testimonials.read();
+    
+    if (this.id) {
+      // Update existing testimonial
+      const index = testimonials.findIndex(t => t.id === this.id);
+      if (index !== -1) {
+        this.updatedAt = new Date().toISOString();
+        testimonials[index] = { ...this };
       }
+    } else {
+      // Create new testimonial
+      testimonials.push(this);
     }
-  },
-  seo: {
-    title: {
-      type: String,
-      trim: true,
-      maxlength: [60, 'SEO title cannot exceed 60 characters']
-    },
-    description: {
-      type: String,
-      trim: true,
-      maxlength: [160, 'SEO description cannot exceed 160 characters']
-    }
+    
+    dataStore.testimonials.write(testimonials);
+    return this;
   }
-}, {
-  timestamps: true,
-  toJSON: { virtuals: true },
-  toObject: { virtuals: true }
-});
 
-// Indexes for better query performance
-testimonialSchema.index({ isPublished: 1, isFeatured: 1 });
-testimonialSchema.index({ rating: -1, createdAt: -1 });
-testimonialSchema.index({ company: 1 });
-testimonialSchema.index({ services: 1 });
-testimonialSchema.index({ tags: 1 });
-testimonialSchema.index({ order: 1, createdAt: -1 });
-
-// Virtual for helpful score
-testimonialSchema.virtual('helpfulScore').get(function() {
-  const total = this.helpful + this.notHelpful;
-  return total > 0 ? (this.helpful / total) * 100 : 0;
-});
-
-// Virtual for testimonial age
-testimonialSchema.virtual('ageInDays').get(function() {
-  if (this.createdAt) {
-    return Math.ceil((Date.now() - this.createdAt) / (1000 * 60 * 60 * 24));
+  async delete() {
+    const testimonials = dataStore.testimonials.read();
+    const filtered = testimonials.filter(t => t.id !== this.id);
+    dataStore.testimonials.write(filtered);
+    return true;
   }
-  return null;
-});
-
-// Pre-save middleware
-testimonialSchema.pre('save', function(next) {
-  // Auto-generate short content if not provided
-  if (!this.shortContent && this.content) {
-    this.shortContent = this.content.substring(0, 200).replace(/\s+\S*$/, '') + '...';
-  }
-  
-  // Auto-generate SEO fields if not provided
-  if (!this.seo.title) {
-    this.seo.title = `Testimonial from ${this.name} at ${this.company}`;
-  }
-  if (!this.seo.description) {
-    this.seo.description = this.shortContent;
-  }
-  
-  // Auto-generate tags based on services and project
-  if (this.services && this.services.length > 0) {
-    this.tags = [...this.services];
-    if (this.project && this.project.category) {
-      this.tags.push(this.project.category);
-    }
-  }
-  
-  next();
-});
-
-// Instance methods
-testimonialSchema.methods.incrementViews = function() {
-  this.views += 1;
-  return this.save();
-};
-
-testimonialSchema.methods.markAsHelpful = function() {
-  this.helpful += 1;
-  return this.save();
-};
-
-testimonialSchema.methods.markAsNotHelpful = function() {
-  this.notHelpful += 1;
-  return this.save();
-};
-
-// Static methods
-testimonialSchema.statics.getPublishedTestimonials = function() {
-  return this.find({ isPublished: true }).sort({ order: 1, createdAt: -1 });
-};
-
-testimonialSchema.statics.getFeaturedTestimonials = function(limit = 6) {
-  return this.find({ isFeatured: true, isPublished: true })
-    .sort({ order: 1, createdAt: -1 })
-    .limit(limit);
-};
-
-testimonialSchema.statics.getTestimonialsByRating = function(minRating = 4, limit = 10) {
-  return this.find({ rating: { $gte: minRating }, isPublished: true })
-    .sort({ rating: -1, createdAt: -1 })
-    .limit(limit);
-};
-
-testimonialSchema.statics.getTestimonialsByService = function(service, limit = 10) {
-  return this.find({ services: service, isPublished: true })
-    .sort({ rating: -1, createdAt: -1 })
-    .limit(limit);
-};
-
-testimonialSchema.statics.getTestimonialsByCompany = function(company, limit = 10) {
-  return this.find({ company: { $regex: company, $options: 'i' }, isPublished: true })
-    .sort({ createdAt: -1 })
-    .limit(limit);
-};
-
-const Testimonial = mongoose.model('Testimonial', testimonialSchema);
+}
 
 export default Testimonial; 
