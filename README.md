@@ -1,18 +1,16 @@
 # 🚀 Renacod Website
 
-A modern, responsive website with a robust backend API, built with React, TypeScript, Tailwind CSS, Node.js, Express, and MongoDB. Perfect for hosting on Hostinger's cloud startup plan.
+A modern, responsive static website built with React, TypeScript, Tailwind CSS, and Vite. Features a Google Form integration for contact management and is ready for deployment on any static hosting platform.
 
 ## ✨ Features
 
 - **🎨 Modern Frontend**: React 18 + TypeScript + Vite + Tailwind CSS
-- **🔧 Robust Backend**: Node.js + Express + MongoDB + JWT Authentication
 - **📱 Responsive Design**: Mobile-first approach with beautiful UI components
-- **📧 Contact System**: Integrated contact form with email notifications
-- **🔒 Security**: JWT authentication, input validation, rate limiting
-- **📊 Database**: MongoDB with Mongoose ODM
-- **📧 Email Service**: Nodemailer integration with Gmail
-- **🚀 Performance**: Optimized for production with PM2 process management
-- **🌐 Hosting Ready**: Configured for Hostinger cloud hosting
+- **📧 Contact System**: Integrated Google Form for seamless contact management
+- **🚀 Performance**: Optimized for production with Vite build system
+- **🌐 Static Hosting Ready**: Configured for GitHub Pages, Netlify, Vercel, and more
+- **🎯 SEO Optimized**: Meta tags and structured data for better search visibility
+- **📊 Analytics Ready**: Easy integration with Google Analytics and other tracking tools
 
 ## 🏗️ Project Structure
 
@@ -21,19 +19,16 @@ renacod-20/
 ├── src/                    # Frontend source code
 │   ├── components/         # React components
 │   ├── pages/             # Page components
-│   ├── services/          # API services
+│   ├── hooks/             # Custom React hooks
+│   ├── lib/               # Utility functions
 │   └── ...
-├── backend/               # Backend API
-│   ├── src/
-│   │   ├── controllers/   # API controllers
-│   │   ├── models/        # Database models
-│   │   ├── routes/        # API routes
-│   │   ├── middleware/    # Express middleware
-│   │   └── utils/         # Utility functions
-│   ├── server.js          # Main server file
-│   └── package.json       # Backend dependencies
 ├── public/                # Static assets
-├── package.json           # Frontend dependencies
+├── dist/                  # Built files (generated)
+├── package.json           # Dependencies
+├── vite.config.ts         # Vite configuration
+├── tailwind.config.ts     # Tailwind CSS configuration
+├── netlify.toml          # Netlify deployment config
+├── vercel.json           # Vercel deployment config
 └── README.md              # This file
 ```
 
@@ -43,8 +38,6 @@ renacod-20/
 
 - Node.js 18+ 
 - npm or yarn
-- MongoDB Atlas account (free tier available)
-- Gmail account for email service
 
 ### 1. Clone and Setup
 
@@ -53,51 +46,27 @@ renacod-20/
 git clone <your-repo-url>
 cd renacod-20
 
-# Make quick start script executable
-chmod +x quick-start.sh
-
-# Run the quick start script
-./quick-start.sh
+# Install dependencies
+npm install
 ```
 
-### 2. Manual Setup (Alternative)
+### 2. Start Development Server
 
 ```bash
-# Install frontend dependencies
-npm install
-
-# Install backend dependencies
-cd backend
-npm install
-cd ..
-
-# Copy environment files
-cp backend/env.example backend/.env
-```
-
-### 3. Configure Environment
-
-Edit `backend/.env` with your settings:
-
-```env
-# Database
-MONGODB_URI_PROD=mongodb+srv://username:password@cluster.mongodb.net/renacod
-
-# Email (Gmail)
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-
-# JWT
-JWT_SECRET=your-super-secret-key
-```
-
-### 4. Start Development Servers
-
-```bash
-# Terminal 1: Frontend
+# Start the development server
 npm run dev
+```
 
-# Terminal 2: Backend
+The website will be available at `http://localhost:8080`
+
+### 3. Build for Production
+
+```bash
+# Build the project
+npm run build
+```
+
+The built files will be in the `dist/` directory.
 cd backend
 npm run dev
 ```
@@ -128,13 +97,33 @@ npm run dev
 
 ### Detailed Deployment Guide
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment instructions.
+## 🚀 Deployment
+
+The website is configured for deployment on multiple platforms. See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions.
+
+### Quick Deploy Options
+
+1. **GitHub Pages** (Free) - Already configured with GitHub Actions
+2. **Netlify** (Free) - Configured with `netlify.toml`
+3. **Vercel** (Free) - Configured with `vercel.json`
+4. **Firebase Hosting** (Free) - Manual setup required
+5. **Surge.sh** (Free) - Manual setup required
+
+### Automated Deployment
+
+Run the deployment script:
+```bash
+# Windows
+deploy.bat
+
+# Linux/Mac
+./deploy.sh
+```
 
 ## 🛠️ Development
 
 ### Available Scripts
 
-**Frontend:**
 ```bash
 npm run dev          # Start development server
 npm run build        # Build for production
@@ -142,63 +131,20 @@ npm run preview      # Preview production build
 npm run lint         # Run ESLint
 ```
 
-**Backend:**
-```bash
-cd backend
-npm run dev          # Start development server
-npm start            # Start production server
-npm run build        # Build backend
-npm test             # Run tests
-```
-
-### API Endpoints
-
-- `POST /api/contact` - Submit contact form
-- `GET /api/health` - Health check
-- `GET /api/projects` - Get projects
-- `GET /api/services` - Get services
-- `GET /api/testimonials` - Get testimonials
-
-### Database Models
-
-- **Contact**: Contact form submissions
-- **Project**: Portfolio projects
-- **Service**: Offered services
-- **Testimonial**: Client testimonials
-- **User**: Admin users
-
 ## 🔧 Configuration
 
 ### Environment Variables
 
-**Frontend (.env.local):**
-```env
-VITE_API_URL=http://localhost:5000/api
+No environment variables are required for the static website. The Google Form integration handles all contact form submissions.
+
+### Google Form Integration
+
+The contact page uses your Google Form for handling inquiries. The form URL is:
+```
+https://docs.google.com/forms/d/e/1FAIpQLScuGXtE3tBB0qxpySVlvZjlcabpxxoYvfJcd-f7twEr6KNH7w/viewform?usp=dialog
 ```
 
-**Backend (.env):**
-```env
-NODE_ENV=production
-PORT=5000
-MONGODB_URI_PROD=mongodb+srv://...
-JWT_SECRET=your-secret
-EMAIL_USER=your-email
-EMAIL_PASS=your-password
-```
-
-### MongoDB Setup
-
-1. Create [MongoDB Atlas](https://www.mongodb.com/atlas) account
-2. Create cluster
-3. Set up database access
-4. Configure network access
-5. Get connection string
-
-### Email Setup
-
-1. Enable 2FA on Gmail
-2. Generate App Password
-3. Use App Password in backend .env
+To update the form URL, edit `src/pages/Contact.tsx`.
 
 ## 📱 Features
 
@@ -208,63 +154,48 @@ EMAIL_PASS=your-password
 - **Hero Section**: Eye-catching hero with call-to-action
 - **Services**: Service showcase with icons and descriptions
 - **Projects**: Portfolio gallery with filtering
-- **Contact Form**: Integrated contact form with validation
+- **Contact Form**: Google Form integration for seamless contact management
 - **Footer**: Company information and social links
 
-### Backend Features
+### Key Features
 
-- **RESTful API**: Clean, documented API endpoints
-- **Authentication**: JWT-based user authentication
-- **Validation**: Input validation and sanitization
-- **Email Service**: Automated email notifications
-- **Database**: MongoDB with Mongoose ODM
-- **Security**: Rate limiting, CORS, Helmet.js
-- **Logging**: Comprehensive logging system
-- **Process Management**: PM2 for production
-
-## 🔒 Security Features
-
-- **JWT Authentication**: Secure token-based authentication
-- **Input Validation**: Comprehensive input sanitization
-- **Rate Limiting**: Prevent API abuse
-- **CORS Protection**: Controlled cross-origin access
-- **Security Headers**: Helmet.js security middleware
-- **Password Hashing**: bcryptjs encryption
-- **XSS Protection**: Cross-site scripting prevention
-
+- **Responsive Design**: Mobile-first approach with beautiful UI components
+- **Modern UI**: Built with Tailwind CSS and shadcn/ui components
+- **Performance Optimized**: Vite build system with code splitting
+- **SEO Ready**: Meta tags and structured data
+- **Accessibility**: WCAG compliant components
+- **Cross-browser Compatible**: Works on all modern browsers
 ## 📊 Performance
 
-- **Compression**: Gzip compression for responses
+- **Build Optimization**: Vite with tree shaking and code splitting
+- **Asset Optimization**: Compressed images and minified CSS/JS
 - **Caching**: Browser caching for static assets
-- **Database Indexing**: Optimized MongoDB queries
-- **PM2 Clustering**: Multi-core process utilization
 - **CDN Ready**: Configured for content delivery networks
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-1. **Backend won't start**
-   - Check MongoDB connection
-   - Verify environment variables
-   - Check port availability
+1. **Build fails**
+   - Check Node.js version (18+ required)
+   - Clear node_modules and reinstall: `rm -rf node_modules && npm install`
+   - Check for TypeScript errors: `npm run lint`
 
-2. **Contact form not working**
-   - Verify backend is running
-   - Check email configuration
-   - Review browser console errors
+2. **Google Form not working**
+   - Verify the form URL is correct in `src/pages/Contact.tsx`
+   - Check if the form is publicly accessible
+   - Test the form URL directly in browser
 
-3. **Database connection failed**
-   - Verify MongoDB Atlas settings
-   - Check network access configuration
-   - Verify connection string
+3. **Deployment issues**
+   - Verify the `dist/` folder contains built files
+   - Check platform-specific logs
+   - Ensure all static assets are included
 
 ### Getting Help
 
-- Check [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions
-- Review backend logs: `pm2 logs renacod-backend`
-- Check frontend console for errors
-- Verify environment configuration
+- Check [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions
+- Review build logs for errors
+- Check browser console for frontend errors
 
 ## 🤝 Contributing
 
@@ -286,17 +217,17 @@ This project is licensed under the MIT License.
 
 ## 🗺️ Roadmap
 
-- [ ] Admin dashboard
-- [ ] Analytics and reporting
-- [ ] File upload service
-- [ ] Webhook support
-- [ ] API documentation (Swagger)
-- [ ] Testing suite
-- [ ] CI/CD pipeline
-- [ ] Docker support
+- [ ] Blog section
+- [ ] Portfolio gallery
+- [ ] Client testimonials
+- [ ] Analytics integration
+- [ ] SEO optimization
+- [ ] Performance monitoring
+- [ ] A/B testing
+- [ ] Multi-language support
 
 ---
 
 **Built with ❤️ by the Renacod Team**
 
-For deployment assistance, refer to [DEPLOYMENT.md](./DEPLOYMENT.md).
+For deployment assistance, refer to [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md).

@@ -98,7 +98,7 @@ const Contact = () => {
                     Contact Us
                   </h2>
                   <p className="mb-6 text-muted-foreground">For inquiries, please use our Google Form below:</p>
-                  <a href="https://docs.google.com/forms/d/e/1FAIpQLScIsE7tvW_RwnpaNuJi7q5qFjMP-SHD4YEWDidsCDql0ttEag/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLScuGXtE3tBB0qxpySVlvZjlcabpxxoYvfJcd-f7twEr6KNH7w/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
                     <Button className="bg-gradient-primary hover:opacity-90 transition-opacity font-medium" size="lg">
                       Open Google Form
                     </Button>
