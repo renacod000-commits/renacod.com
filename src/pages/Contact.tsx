@@ -54,7 +54,7 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      details: ['renacod000@gmail.com']
+      details: ['info@renacod.com']
     },
     {
       icon: <Clock className="w-6 h-6" />,
@@ -190,17 +190,13 @@ const Contact = () => {
           
           <div className="bg-gradient-primary rounded-2xl p-1 shadow-glow">
             <div className="bg-background rounded-xl overflow-hidden">
-              <div className="w-full h-96 bg-muted flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-poppins font-semibold text-foreground mb-2">
-                    Interactive Map
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Map integration would be implemented here
-                  </p>
-                </div>
-              </div>
+              <iframe
+                title="Coimbatore Location"
+                src="https://www.google.com/maps?q=Coimbatore&hl=en&output=embed"
+                className="w-full h-96 border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>

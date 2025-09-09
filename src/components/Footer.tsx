@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
@@ -20,12 +20,30 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                 href="https://www.linkedin.com/in/renacod-renacod-6ba448379/"
+                 href="https://www.linkedin.com/company/108417170/admin/dashboard/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-surface hover:bg-primary/10 border border-border hover:border-primary/50 transition-colors flex items-center justify-center group"
               >
                 <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://www.instagram.com/rena_cod?igsh=cDU3MjJmbnljcGdr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-lg bg-surface hover:bg-primary/10 border border-border hover:border-primary/50 transition-colors flex items-center justify-center group"
+              >
+                <Instagram className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://x.com/Renacod000?t=IcLxREzpLNr13IaKTVt5Yw&s=09"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter/X"
+                className="w-10 h-10 rounded-lg bg-surface hover:bg-primary/10 border border-border hover:border-primary/50 transition-colors flex items-center justify-center group"
+              >
+                <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
             </div>
           </div>
