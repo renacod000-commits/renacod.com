@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
 
   useEffect(() => {
@@ -54,7 +56,19 @@ const Navigation = () => {
               </Link>
             ))}
             
-          
+            {/* Search Bar */}
+            <div className="relative">
+              <div className="flex items-center">
+                <img src="/image.png" alt="Renacod" className="h-6 w-6 mr-2 rounded-full" />
+                <Input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-64 bg-background/50 border-border/50 focus:border-primary/50 text-foreground placeholder:text-muted-foreground"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -74,6 +88,18 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-surface border border-border rounded-b-lg shadow-elegant animate-fade-in">
             <div className="px-4 py-6 space-y-4">
+              {/* Mobile Search Bar */}
+              <div className="flex items-center mb-4">
+                <img src="/image.png" alt="Renacod" className="h-6 w-6 mr-2 rounded-full" />
+                <Input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="flex-1 bg-background/50 border-border/50 focus:border-primary/50 text-foreground placeholder:text-muted-foreground"
+                />
+              </div>
+              
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
